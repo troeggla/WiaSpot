@@ -272,6 +272,7 @@ class MyWatchFace : CanvasWatchFaceService() {
                 textSize = 40f
                 color = Color.parseColor("#F8F8F8")
                 isAntiAlias = true
+                setShadowLayer(2f, 0f, 0f, Color.parseColor("#231F20"))
             }
             val text = TimeTransformer(mCalendar).getTextualTime()
 
