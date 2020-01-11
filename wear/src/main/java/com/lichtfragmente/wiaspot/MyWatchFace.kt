@@ -4,14 +4,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.ColorMatrix
-import android.graphics.ColorMatrixColorFilter
-import android.graphics.Paint
-import android.graphics.Rect
+import android.graphics.*
 import android.os.Bundle
 import android.os.Handler
 import android.os.Message
@@ -268,10 +261,13 @@ class MyWatchFace : CanvasWatchFaceService() {
              */
             canvas.save()
 
+            val firaSans = Typeface.createFromAsset(applicationContext.assets, "fonts/fira_sans.ttf")
+
             val textPaint = TextPaint().apply {
                 textSize = 40f
                 color = Color.parseColor("#F8F8F8")
                 isAntiAlias = true
+                typeface = firaSans
                 setShadowLayer(2f, 0f, 0f, Color.parseColor("#231F20"))
             }
             val text = TimeTransformer(mCalendar).getTextualTime()
