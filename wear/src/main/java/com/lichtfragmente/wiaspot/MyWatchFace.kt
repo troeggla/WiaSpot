@@ -269,11 +269,21 @@ class MyWatchFace : CanvasWatchFaceService() {
             canvas.save()
 
             val textPaint = TextPaint().apply {
-                textSize = 20f
+                textSize = 30f
                 color = Color.BLACK
+                isAntiAlias = true
             }
+            val text = TimeTransformer(mCalendar).getTextualTime()
 
-            canvas.drawText("Hello World", 0f, 50f, textPaint)
+            val rect = Rect()
+            textPaint.getTextBounds(text, 0, text.length, rect)
+
+            canvas.drawText(
+                text,
+                (canvas.width / 2f) - (rect.width() / 2f),
+                (canvas.height / 2f) -(rect.height() / 2f),
+                textPaint
+            )
 
             /* Restore the canvas' original orientation. */
             canvas.restore()
