@@ -41,7 +41,7 @@ class TimeTransformer(time: Calendar) {
                 12 -> "zwölf"
                 13 -> "dreizehn"
                 14 -> "vierzehn"
-                15 -> "viertl nåch"
+                15 -> "viertl"
                 16 -> "sechzehn"
                 17 -> "siebzehn"
                 18 -> "åchtzehn"
