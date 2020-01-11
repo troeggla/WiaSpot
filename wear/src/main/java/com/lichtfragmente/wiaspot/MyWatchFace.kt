@@ -269,8 +269,8 @@ class MyWatchFace : CanvasWatchFaceService() {
             canvas.save()
 
             val textPaint = TextPaint().apply {
-                textSize = 30f
-                color = Color.BLACK
+                textSize = 40f
+                color = Color.parseColor("#F8F8F8")
                 isAntiAlias = true
             }
             val text = TimeTransformer(mCalendar).getTextualTime()
@@ -278,10 +278,13 @@ class MyWatchFace : CanvasWatchFaceService() {
             val rect = Rect()
             textPaint.getTextBounds(text, 0, text.length, rect)
 
+            val textHeight = textPaint.descent() - textPaint.ascent()
+            val textOffset = (textHeight / 2) - textPaint.descent()
+
             canvas.drawText(
                 text,
                 (canvas.width / 2f) - (rect.width() / 2f),
-                (canvas.height / 2f) -(rect.height() / 2f),
+                (canvas.height / 2f) + textOffset,
                 textPaint
             )
 
