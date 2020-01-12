@@ -101,8 +101,8 @@ class TimeTransformer(time: Calendar) {
     fun getTextualTime(): String {
         if (minute == 0) {
             when (hour) {
-                0 -> return "Mitternåcht"
-                12 -> return "Mittåg"
+                0 -> return "mitternåcht"
+                12 -> return "mittåg"
             }
         }
 
