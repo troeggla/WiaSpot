@@ -7,7 +7,10 @@ class TimeTransformer(time: Calendar) {
     private val minute = time.get(Calendar.MINUTE)
 
     private fun getHour(): String {
-        return when (if (hour > 12) hour - 12 else hour) {
+        var hour = if (minute >= 30) hour + 1 else hour
+        hour = if (hour > 12) hour - 12 else hour
+
+        return when (hour) {
             1 -> "oans"
             2 -> "zwoa"
             3 -> "drei"
