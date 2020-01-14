@@ -272,20 +272,53 @@ class MyWatchFace : CanvasWatchFaceService() {
         }
 
         private fun drawWatchFace(canvas: Canvas) {
+            if (mCalendar.get(Calendar.MINUTE) == 0) {
+                drawFullHour(canvas)
+            } else {
+                drawOtherTime(canvas)
+            }
+        }
+
+        private fun drawFullHour(canvas: Canvas) {
             val text = TimeTransformer(mCalendar).getTextualTime()
-            val paint = if (mCalendar.get(Calendar.MINUTE) == 0) bigTextPaint else smallTextPaint
 
             val rect = Rect()
-            paint.getTextBounds(text, 0, text.length, rect)
+            bigTextPaint.getTextBounds(text, 0, text.length, rect)
 
-            val textHeight = paint.descent() - paint.ascent()
-            val textOffset = (textHeight / 2) - paint.descent()
+            val textHeight = bigTextPaint.descent() - bigTextPaint.ascent()
+            val textOffset = (textHeight / 2) - bigTextPaint.descent()
 
             canvas.drawText(
                 text,
                 mCenterX - (rect.width() / 2f),
                 mCenterY + textOffset,
-                paint
+                bigTextPaint
+            )
+        }
+
+        private fun drawOtherTime(canvas: Canvas) {
+            val text = TimeTransformer(mCalendar).getTextualTime()
+            val (minute, hour) = text.split(" ".toRegex(), 2)
+
+            val minuteRect = Rect()
+            smallTextPaint.getTextBounds(minute, 0, minute.length, minuteRect)
+            val hourRect = Rect()
+            smallTextPaint.getTextBounds(hour, 0, hour.length, hourRect)
+
+            val textHeight = smallTextPaint.descent() - smallTextPaint.ascent()
+
+            canvas.drawText(
+                minute,
+                mCenterX - (minuteRect.width() / 2f),
+                mCenterY - textHeight,
+                smallTextPaint
+            )
+
+            canvas.drawText(
+                hour,
+                mCenterX - (hourRect.width() / 2f),
+                mCenterY,
+                smallTextPaint
             )
         }
 
