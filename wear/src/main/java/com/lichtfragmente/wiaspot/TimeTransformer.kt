@@ -107,7 +107,9 @@ class TimeTransformer(time: Calendar) {
         if (minute == 0) {
             when (hour) {
                 0 -> return "mitternåcht"
+                10 -> return "holbmittåg"
                 12 -> return "mittåg"
+                17 -> return "feirum"
             }
         }
 
