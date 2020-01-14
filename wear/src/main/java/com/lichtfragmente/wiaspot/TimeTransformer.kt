@@ -8,7 +8,7 @@ class TimeTransformer(time: Calendar) {
 
     private fun getHour(): String {
         var hour = if (minute >= 30) hour + 1 else hour
-        hour = if (hour > 12) hour - 12 else hour
+        hour = if (hour >= 12) hour - 12 else hour
 
         return when (hour) {
             1 -> "oans"
@@ -22,7 +22,7 @@ class TimeTransformer(time: Calendar) {
             9 -> "nëine"
             10 -> "zehne"
             11 -> "elfe"
-            12 -> "zwölfe"
+            0 -> "zwölfe"
             else -> ""
         }
     }
