@@ -305,19 +305,21 @@ class MyWatchFace : CanvasWatchFaceService() {
             val hourRect = Rect()
             smallTextPaint.getTextBounds(hour, 0, hour.length, hourRect)
 
-            val textHeight = -smallTextPaint.ascent() + 3
+            val textHeight = -smallTextPaint.ascent()
+            val spacing = 5
+            val vShift = 15
 
             canvas.drawText(
                 minute,
                 mCenterX - (minuteRect.width() / 2f),
-                mCenterY,
+                mCenterY - vShift - spacing,
                 smallTextPaint
             )
 
             canvas.drawText(
                 hour,
                 mCenterX - (hourRect.width() / 2f),
-                mCenterY + textHeight,
+                mCenterY - vShift + textHeight + spacing,
                 smallTextPaint
             )
         }
