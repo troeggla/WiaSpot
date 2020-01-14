@@ -273,18 +273,19 @@ class MyWatchFace : CanvasWatchFaceService() {
 
         private fun drawWatchFace(canvas: Canvas) {
             val text = TimeTransformer(mCalendar).getTextualTime()
+            val paint = if (mCalendar.get(Calendar.MINUTE) == 0) bigTextPaint else smallTextPaint
 
             val rect = Rect()
-            textPaint.getTextBounds(text, 0, text.length, rect)
+            paint.getTextBounds(text, 0, text.length, rect)
 
-            val textHeight = textPaint.descent() - textPaint.ascent()
-            val textOffset = (textHeight / 2) - textPaint.descent()
+            val textHeight = paint.descent() - paint.ascent()
+            val textOffset = (textHeight / 2) - paint.descent()
 
             canvas.drawText(
                 text,
-                (canvas.width / 2f) - (rect.width() / 2f),
-                (canvas.height / 2f) + textOffset,
-                textPaint
+                mCenterX - (rect.width() / 2f),
+                mCenterY + textOffset,
+                paint
             )
         }
 
