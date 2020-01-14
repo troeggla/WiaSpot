@@ -64,8 +64,16 @@ class MyWatchFace : CanvasWatchFaceService() {
 
     inner class Engine : CanvasWatchFaceService.Engine() {
         private val firaSans = Typeface.createFromAsset(applicationContext.assets, "fonts/fira_sans.ttf")
-        private val textPaint = TextPaint().apply {
+
+        private val smallTextPaint = TextPaint().apply {
             textSize = 40f
+            color = Color.parseColor("#F8F8F8")
+            isAntiAlias = true
+            typeface = firaSans
+            setShadowLayer(2f, 0f, 0f, Color.parseColor("#231F20"))
+        }
+        private val bigTextPaint = TextPaint().apply {
+            textSize = 60f
             color = Color.parseColor("#F8F8F8")
             isAntiAlias = true
             typeface = firaSans
