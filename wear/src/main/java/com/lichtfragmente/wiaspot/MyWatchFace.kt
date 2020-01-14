@@ -63,6 +63,14 @@ class MyWatchFace : CanvasWatchFaceService() {
     }
 
     inner class Engine : CanvasWatchFaceService.Engine() {
+        private val firaSans = Typeface.createFromAsset(applicationContext.assets, "fonts/fira_sans.ttf")
+        private val textPaint = TextPaint().apply {
+            textSize = 40f
+            color = Color.parseColor("#F8F8F8")
+            isAntiAlias = true
+            typeface = firaSans
+            setShadowLayer(2f, 0f, 0f, Color.parseColor("#231F20"))
+        }
 
         private lateinit var mCalendar: Calendar
 
@@ -256,20 +264,6 @@ class MyWatchFace : CanvasWatchFaceService() {
         }
 
         private fun drawWatchFace(canvas: Canvas) {
-            /*
-             * Save the canvas state before we can begin to rotate it.
-             */
-            canvas.save()
-
-            val firaSans = Typeface.createFromAsset(applicationContext.assets, "fonts/fira_sans.ttf")
-
-            val textPaint = TextPaint().apply {
-                textSize = 40f
-                color = Color.parseColor("#F8F8F8")
-                isAntiAlias = true
-                typeface = firaSans
-                setShadowLayer(2f, 0f, 0f, Color.parseColor("#231F20"))
-            }
             val text = TimeTransformer(mCalendar).getTextualTime()
 
             val rect = Rect()
@@ -284,9 +278,6 @@ class MyWatchFace : CanvasWatchFaceService() {
                 (canvas.height / 2f) + textOffset,
                 textPaint
             )
-
-            /* Restore the canvas' original orientation. */
-            canvas.restore()
         }
 
         override fun onVisibilityChanged(visible: Boolean) {
