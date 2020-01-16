@@ -13,7 +13,6 @@ import android.support.wearable.watchface.WatchFaceService
 import android.support.wearable.watchface.WatchFaceStyle
 import android.text.TextPaint
 import android.view.SurfaceHolder
-import android.widget.Toast
 
 import java.lang.ref.WeakReference
 import java.util.Calendar
