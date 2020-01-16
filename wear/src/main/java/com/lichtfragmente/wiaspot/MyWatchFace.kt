@@ -286,6 +286,22 @@ class MyWatchFace : CanvasWatchFaceService() {
             } else {
                 drawOtherTime(canvas)
             }
+
+            drawDate(canvas)
+        }
+
+        private fun drawDate(canvas: Canvas) {
+            val text = DateTransformer(mCalendar).getTextualDate()
+
+            val rect = Rect()
+            datePaint.getTextBounds(text, 0, text.length, rect)
+
+            canvas.drawText(
+                text,
+                mCenterX - (rect.width() / 2f),
+                mCenterY + 60,
+                datePaint
+            )
         }
 
         private fun drawFullHour(canvas: Canvas) {
