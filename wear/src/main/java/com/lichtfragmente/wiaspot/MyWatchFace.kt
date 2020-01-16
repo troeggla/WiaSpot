@@ -72,8 +72,17 @@ class MyWatchFace : CanvasWatchFaceService() {
             typeface = firaSans
             setShadowLayer(2f, 0f, 0f, Color.parseColor("#231F20"))
         }
+
         private val bigTextPaint = TextPaint().apply {
             textSize = 60f
+            color = Color.parseColor("#F8F8F8")
+            isAntiAlias = true
+            typeface = firaSans
+            setShadowLayer(2f, 0f, 0f, Color.parseColor("#231F20"))
+        }
+
+        private val datePaint = TextPaint().apply {
+            textSize = 15f
             color = Color.parseColor("#F8F8F8")
             isAntiAlias = true
             typeface = firaSans
