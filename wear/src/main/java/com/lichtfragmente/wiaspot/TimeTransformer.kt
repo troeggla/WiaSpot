@@ -22,7 +22,7 @@ class TimeTransformer(time: Calendar) {
             9 -> "nëine"
             10 -> "zehne"
             11 -> "elfe"
-            0 -> "zwölfe"
+            0, 12 -> "zwölfe"
             else -> ""
         }
     }
