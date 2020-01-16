@@ -164,17 +164,9 @@ class MyWatchFace : CanvasWatchFaceService() {
             super.onAmbientModeChanged(inAmbientMode)
             mAmbient = inAmbientMode
 
-            updateWatchHandStyle()
-
             // Check and trigger whether or not timer should be running (only
             // in active mode).
             updateTimer()
-        }
-
-        private fun updateWatchHandStyle() {
-            if (mAmbient) {
-            } else {
-            }
         }
 
         override fun onInterruptionFilterChanged(interruptionFilter: Int) {
@@ -238,28 +230,6 @@ class MyWatchFace : CanvasWatchFaceService() {
             grayPaint.colorFilter = filter
             canvas.drawBitmap(mBackgroundBitmap, 0f, 0f, grayPaint)
         }
-
-        /**
-         * Captures tap event (and tap type). The [WatchFaceService.TAP_TYPE_TAP] case can be
-         * used for implementing specific logic to handle the gesture.
-         */
-        override fun onTapCommand(tapType: Int, x: Int, y: Int, eventTime: Long) {
-            when (tapType) {
-                WatchFaceService.TAP_TYPE_TOUCH -> {
-                    // The user has started touching the screen.
-                }
-                WatchFaceService.TAP_TYPE_TOUCH_CANCEL -> {
-                    // The user has started a different gesture or otherwise cancelled the tap.
-                }
-                WatchFaceService.TAP_TYPE_TAP ->
-                    // The user has completed the tap gesture.
-                    // TODO: Add code to handle the tap gesture.
-                    Toast.makeText(applicationContext, R.string.message, Toast.LENGTH_SHORT)
-                        .show()
-            }
-            invalidate()
-        }
-
 
         override fun onDraw(canvas: Canvas, bounds: Rect) {
             val now = System.currentTimeMillis()
