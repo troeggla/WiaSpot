@@ -89,6 +89,7 @@ class MyWatchFace : CanvasWatchFaceService() {
         }
 
         private lateinit var mCalendar: Calendar
+        private var lastMinute = -1
 
         private var mRegisteredTimeZoneReceiver = false
         private var mMuteMode: Boolean = false
@@ -146,7 +147,14 @@ class MyWatchFace : CanvasWatchFaceService() {
 
         override fun onTimeTick() {
             super.onTimeTick()
-            invalidate()
+
+            mCalendar.timeInMillis = System.currentTimeMillis()
+            val currentMinute = mCalendar.get(Calendar.MINUTE)
+
+            if (currentMinute != lastMinute) {
+                lastMinute = currentMinute
+                invalidate()
+            }
         }
 
         override fun onAmbientModeChanged(inAmbientMode: Boolean) {
