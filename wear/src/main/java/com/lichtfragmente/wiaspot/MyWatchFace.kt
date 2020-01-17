@@ -289,7 +289,7 @@ class MyWatchFace : CanvasWatchFaceService() {
 
         private fun drawOtherTime(canvas: Canvas) {
             val text = TimeTransformer(mCalendar).getTextualTime()
-            val (minute, hour) = text.split(" ".toRegex(), 2)
+            val (minute, hour) = text.split("\n")
 
             val minuteRect = Rect()
             smallTextPaint.getTextBounds(minute, 0, minute.length, minuteRect)
