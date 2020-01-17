@@ -356,7 +356,16 @@ class WiaSpotWatchFace : CanvasWatchFaceService() {
          * Handle updating the time periodically in interactive mode.
          */
         fun handleUpdateTimeMessage() {
+            mCalendar.timeInMillis = System.currentTimeMillis()
+            val currentMinute = mCalendar.get(Calendar.MINUTE)
+
+            if (currentMinute == lastMinute) {
+                return
+            }
+
+            lastMinute = currentMinute
             invalidate()
+
             if (shouldTimerBeRunning()) {
                 val timeMs = System.currentTimeMillis()
                 val delayMs = INTERACTIVE_UPDATE_RATE_MS - timeMs % INTERACTIVE_UPDATE_RATE_MS
