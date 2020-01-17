@@ -73,7 +73,7 @@ class MyWatchFace : CanvasWatchFaceService() {
         }
 
         private val bigTextPaint = TextPaint().apply {
-            textSize = 100f
+            textSize = 105f
             color = Color.parseColor("#F8F8F8")
             isAntiAlias = true
             typeface = font
@@ -265,7 +265,7 @@ class MyWatchFace : CanvasWatchFaceService() {
             canvas.drawText(
                 text,
                 mCenterX - (rect.width() / 2f),
-                mCenterY + 85,
+                mCenterY + 90,
                 datePaint
             )
         }
