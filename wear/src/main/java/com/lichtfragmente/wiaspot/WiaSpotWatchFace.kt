@@ -68,7 +68,7 @@ class WiaSpotWatchFace : CanvasWatchFaceService() {
         }
 
         private val datePaint = TextPaint().apply {
-            textSize = 22f
+            textSize = 30f
             color = Color.parseColor("#F8F8F8")
             isAntiAlias = true
             typeface = font
@@ -252,7 +252,7 @@ class WiaSpotWatchFace : CanvasWatchFaceService() {
             canvas.drawText(
                 text,
                 mCenterX - (rect.width() / 2f),
-                mCenterY + 90,
+                mCenterY + 100,
                 datePaint
             )
         }
