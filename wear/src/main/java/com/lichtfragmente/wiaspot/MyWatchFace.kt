@@ -65,7 +65,7 @@ class MyWatchFace : CanvasWatchFaceService() {
         private val font = Typeface.createFromAsset(applicationContext.assets, "fonts/amatic.ttf")
 
         private val smallTextPaint = TextPaint().apply {
-            textSize = 60f
+            textSize = 80f
             color = Color.parseColor("#F8F8F8")
             isAntiAlias = true
             typeface = font
@@ -73,7 +73,7 @@ class MyWatchFace : CanvasWatchFaceService() {
         }
 
         private val bigTextPaint = TextPaint().apply {
-            textSize = 80f
+            textSize = 100f
             color = Color.parseColor("#F8F8F8")
             isAntiAlias = true
             typeface = font
@@ -297,7 +297,7 @@ class MyWatchFace : CanvasWatchFaceService() {
             smallTextPaint.getTextBounds(hour, 0, hour.length, hourRect)
 
             val textHeight = -smallTextPaint.ascent()
-            val vShift = 10
+            val vShift = 15
 
             canvas.drawText(
                 minute,
@@ -309,7 +309,7 @@ class MyWatchFace : CanvasWatchFaceService() {
             canvas.drawText(
                 hour,
                 mCenterX - (hourRect.width() / 2f),
-                mCenterY + textHeight - vShift,
+                mCenterY + textHeight - 1.7f * vShift,
                 smallTextPaint
             )
         }
