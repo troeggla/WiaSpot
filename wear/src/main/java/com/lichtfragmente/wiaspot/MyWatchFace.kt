@@ -65,14 +65,6 @@ class MyWatchFace : CanvasWatchFaceService() {
         private val font = Typeface.createFromAsset(applicationContext.assets, "fonts/amatic.ttf")
 
         private val smallTextPaint = TextPaint().apply {
-            textSize = 40f
-            color = Color.parseColor("#F8F8F8")
-            isAntiAlias = true
-            typeface = font
-            setShadowLayer(2f, 0f, 0f, Color.parseColor("#231F20"))
-        }
-
-        private val bigTextPaint = TextPaint().apply {
             textSize = 60f
             color = Color.parseColor("#F8F8F8")
             isAntiAlias = true
@@ -80,8 +72,16 @@ class MyWatchFace : CanvasWatchFaceService() {
             setShadowLayer(2f, 0f, 0f, Color.parseColor("#231F20"))
         }
 
+        private val bigTextPaint = TextPaint().apply {
+            textSize = 80f
+            color = Color.parseColor("#F8F8F8")
+            isAntiAlias = true
+            typeface = font
+            setShadowLayer(2f, 0f, 0f, Color.parseColor("#231F20"))
+        }
+
         private val datePaint = TextPaint().apply {
-            textSize = 15f
+            textSize = 22f
             color = Color.parseColor("#F8F8F8")
             isAntiAlias = true
             typeface = font
@@ -265,7 +265,7 @@ class MyWatchFace : CanvasWatchFaceService() {
             canvas.drawText(
                 text,
                 mCenterX - (rect.width() / 2f),
-                mCenterY + 60,
+                mCenterY + 85,
                 datePaint
             )
         }
@@ -297,20 +297,19 @@ class MyWatchFace : CanvasWatchFaceService() {
             smallTextPaint.getTextBounds(hour, 0, hour.length, hourRect)
 
             val textHeight = -smallTextPaint.ascent()
-            val spacing = 5
-            val vShift = 15
+            val vShift = 10
 
             canvas.drawText(
                 minute,
                 mCenterX - (minuteRect.width() / 2f),
-                mCenterY - vShift - spacing,
+                mCenterY - vShift,
                 smallTextPaint
             )
 
             canvas.drawText(
                 hour,
                 mCenterX - (hourRect.width() / 2f),
-                mCenterY - vShift + textHeight + spacing,
+                mCenterY + textHeight - vShift,
                 smallTextPaint
             )
         }
