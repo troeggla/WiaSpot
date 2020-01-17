@@ -118,25 +118,15 @@ class MyWatchFace : CanvasWatchFaceService() {
 
             setWatchFaceStyle(
                 WatchFaceStyle.Builder(this@MyWatchFace)
-                    .setAcceptsTapEvents(true)
                     .build()
             )
 
             mCalendar = Calendar.getInstance()
 
-            initializeBackground()
-            initializeWatchFace()
-        }
-
-        private fun initializeBackground() {
             mBackgroundPaint = Paint().apply {
                 color = Color.BLACK
             }
             mBackgroundBitmap = BitmapFactory.decodeResource(resources, R.drawable.bg)
-        }
-
-        private fun initializeWatchFace() {
-
         }
 
         override fun onDestroy() {
@@ -239,7 +229,6 @@ class MyWatchFace : CanvasWatchFaceService() {
         }
 
         private fun drawBackground(canvas: Canvas) {
-
             if (mAmbient && (mLowBitAmbient || mBurnInProtection)) {
                 canvas.drawColor(Color.BLACK)
             } else if (mAmbient) {
