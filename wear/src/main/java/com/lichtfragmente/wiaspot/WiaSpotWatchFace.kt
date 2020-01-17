@@ -29,20 +29,7 @@ private const val INTERACTIVE_UPDATE_RATE_MS = 1000
  */
 private const val MSG_UPDATE_TIME = 0
 
-/**
- * Analog watch face with a ticking second hand. In ambient mode, the second hand isn't
- * shown. On devices with low-bit ambient mode, the hands are drawn without anti-aliasing in ambient
- * mode. The watch face is drawn with less contrast in mute mode.
- *
- *
- * Important Note: Because watch face apps do not have a default Activity in
- * their project, you will need to set your Configurations to
- * "Do not launch Activity" for both the Wear and/or Application modules. If you
- * are unsure how to do this, please review the "Run Starter project" section
- * in the Google Watch Face Code Lab:
- * https://codelabs.developers.google.com/codelabs/watchface/index.html#0
- */
-class MyWatchFace : CanvasWatchFaceService() {
+class WiaSpotWatchFace : CanvasWatchFaceService() {
 
     override fun onCreateEngine(): Engine {
         return Engine()
@@ -118,7 +105,7 @@ class MyWatchFace : CanvasWatchFaceService() {
             super.onCreate(holder)
 
             setWatchFaceStyle(
-                WatchFaceStyle.Builder(this@MyWatchFace)
+                WatchFaceStyle.Builder(this@WiaSpotWatchFace)
                     .build()
             )
 
@@ -336,7 +323,7 @@ class MyWatchFace : CanvasWatchFaceService() {
             }
             mRegisteredTimeZoneReceiver = true
             val filter = IntentFilter(Intent.ACTION_TIMEZONE_CHANGED)
-            this@MyWatchFace.registerReceiver(mTimeZoneReceiver, filter)
+            this@WiaSpotWatchFace.registerReceiver(mTimeZoneReceiver, filter)
         }
 
         private fun unregisterReceiver() {
@@ -344,7 +331,7 @@ class MyWatchFace : CanvasWatchFaceService() {
                 return
             }
             mRegisteredTimeZoneReceiver = false
-            this@MyWatchFace.unregisterReceiver(mTimeZoneReceiver)
+            this@WiaSpotWatchFace.unregisterReceiver(mTimeZoneReceiver)
         }
 
         /**
