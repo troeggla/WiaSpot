@@ -29,6 +29,9 @@ class TimeTransformer(time: Calendar) {
 
     private fun getMinute(): String {
         when (minute) {
+            0 -> {
+                return ""
+            }
             in 1..29 -> {
                 return when (minute) {
                     1 -> "oans"
@@ -65,9 +68,6 @@ class TimeTransformer(time: Calendar) {
             }
             30 -> {
                 return "hålbe "
-            }
-            0 -> {
-                return ""
             }
             else -> {
                 return when (minute) {
