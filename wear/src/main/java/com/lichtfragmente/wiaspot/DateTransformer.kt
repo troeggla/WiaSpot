@@ -42,3 +42,7 @@ class DateTransformer(time: Calendar) {
         return "${getWeekday()}, ${day}. ${getMonth()}"
     }
 }
+
+fun Calendar.getTextualDate(): String {
+    return DateTransformer(this).getTextualDate()
+}

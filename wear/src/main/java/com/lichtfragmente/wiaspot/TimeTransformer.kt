@@ -119,3 +119,7 @@ class TimeTransformer(time: Calendar) {
         return "${getMinute()}${getHour()}"
     }
 }
+
+fun Calendar.getTextualTime(): String {
+    return TimeTransformer(this).getTextualTime()
+}
