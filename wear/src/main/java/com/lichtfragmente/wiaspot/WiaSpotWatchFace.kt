@@ -126,11 +126,7 @@ class WiaSpotWatchFace : CanvasWatchFaceService() {
         override fun onTimeTick() {
             super.onTimeTick()
 
-            mCalendar.timeInMillis = System.currentTimeMillis()
-            val currentMinute = mCalendar.get(Calendar.MINUTE)
-
-            if (currentMinute != lastMinute) {
-                lastMinute = currentMinute
+            if (hasMinuteChanged()) {
                 invalidate()
             }
         }
@@ -292,6 +288,18 @@ class WiaSpotWatchFace : CanvasWatchFaceService() {
             )
         }
 
+        private fun hasMinuteChanged(): Boolean {
+            mCalendar.timeInMillis = System.currentTimeMillis()
+            val currentMinute = mCalendar.get(Calendar.MINUTE)
+
+            if (currentMinute == lastMinute) {
+                return false
+            }
+
+            lastMinute = currentMinute
+            return true
+        }
+
         override fun onVisibilityChanged(visible: Boolean) {
             super.onVisibilityChanged(visible)
 
@@ -347,14 +355,10 @@ class WiaSpotWatchFace : CanvasWatchFaceService() {
          * Handle updating the time periodically in interactive mode.
          */
         fun handleUpdateTimeMessage() {
-            mCalendar.timeInMillis = System.currentTimeMillis()
-            val currentMinute = mCalendar.get(Calendar.MINUTE)
-
-            if (currentMinute == lastMinute) {
+            if (!hasMinuteChanged()) {
                 return
             }
 
-            lastMinute = currentMinute
             invalidate()
 
             if (shouldTimerBeRunning()) {
