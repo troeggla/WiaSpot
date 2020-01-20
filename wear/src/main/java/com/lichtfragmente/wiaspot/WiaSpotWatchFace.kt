@@ -18,15 +18,7 @@ import java.lang.ref.WeakReference
 import java.util.Calendar
 import java.util.TimeZone
 
-/**
- * Updates rate in milliseconds for interactive mode. We update once a second to advance the
- * second hand.
- */
 private const val INTERACTIVE_UPDATE_RATE_MS = 1000
-
-/**
- * Handler message id for updating the time periodically in interactive mode.
- */
 private const val MSG_UPDATE_TIME = 0
 
 class WiaSpotWatchFace : CanvasWatchFaceService() {
@@ -91,7 +83,6 @@ class WiaSpotWatchFace : CanvasWatchFaceService() {
         private var mLowBitAmbient: Boolean = false
         private var mBurnInProtection: Boolean = false
 
-        /* Handler to update the time once a second in interactive mode. */
         private val mUpdateTimeHandler = EngineHandler(this)
 
         private val mTimeZoneReceiver = object : BroadcastReceiver() {
@@ -258,7 +249,7 @@ class WiaSpotWatchFace : CanvasWatchFaceService() {
         }
 
         private fun drawFullHour(canvas: Canvas) {
-            val text = TimeTransformer(mCalendar).getTextualTime()
+            val text = mCalendar.getTextualTime()
 
             val rect = Rect()
             bigTextPaint.getTextBounds(text, 0, text.length, rect)
@@ -275,7 +266,7 @@ class WiaSpotWatchFace : CanvasWatchFaceService() {
         }
 
         private fun drawOtherTime(canvas: Canvas) {
-            val text = TimeTransformer(mCalendar).getTextualTime()
+            val text = mCalendar.getTextualTime()
             val (minute, hour) = text.split("\n")
 
             val minuteRect = Rect()
