@@ -5,6 +5,6 @@ if [ $# -eq 2 ]; then
 elif [ $# -eq 4 ]; then
   adb shell "su 0 date ${3}${4}${1}${2}"
 else
-  echo "USAGE: $0 HH MM [DD MM]"
-  exit 1
+  now=`date +%m%d%H%M%Y.%S`
+  adb shell "su 0 date ${now}"
 fi
