@@ -231,7 +231,7 @@ class WiaSpotWatchFace : CanvasWatchFaceService() {
         }
 
         private fun drawDate(canvas: Canvas) {
-            val text = DateTransformer(mCalendar).getTextualDate()
+            val text = mCalendar.getTextualDate()
 
             val rect = Rect()
             datePaint.getTextBounds(text, 0, text.length, rect)
